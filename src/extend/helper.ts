@@ -45,8 +45,8 @@ function checkPassword (unEncryptedPW: string, pw: string) {
 }
 
 // 生成token
-async function createToken (data: object) {
-  return await jwt.sign(data, config.jwt.secret, {expiresIn: 30 * 24 * 60 * 60 + 's'})
+async function createToken (id: string) {
+  return await jwt.sign({id}, config.jwt.secret, {expiresIn: 30 * 24 * 60 * 60 + 's'})
 }
 
 // 验证token

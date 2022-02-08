@@ -8,8 +8,9 @@ export default async function (ctx: Context, next: Next) {
   const user = ctx.userData
   const { id } = ctx.params
   const template = await getTemplateById(id)
+
   // 判断模板存不存在、不是自己的模板也视为不存在
-  if (!template || template.author !== user._id) {
+  if (!template || template.author !== user._id.toString()) {
     returnBody(ctx, {}, emptyTemplate.msg, emptyTemplate.code)
     return
   }

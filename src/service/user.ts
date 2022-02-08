@@ -10,6 +10,12 @@ const createUser = async (name: string, password: string) => {
   return getUserByUsername(name)
 }
 
+// 通过用户id查找用户
+const getUserById = async (id: string) => {
+  if (!id) return null
+  return userModel.findById(id).exec()
+}
+
 // 通过名字查找用户
 const getUserByUsername = async (name: string) => {
   if (!name) return null
@@ -41,5 +47,6 @@ export {
   createUser,
   getUserPasswordByUsername,
   updateName,
-  updateAvatar
+  updateAvatar,
+  getUserById
 }

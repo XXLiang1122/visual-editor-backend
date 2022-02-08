@@ -54,7 +54,7 @@ const register = async (ctx: Context) => {
   // 创建用户
   const userInfo = await createUser(username, pw)
   // 生成token
-  const token = await createToken(userInfo.toObject())
+  const token = await createToken(userInfo._id)
   returnBody(ctx, { userInfo, token }, '注册成功')
 }
 
@@ -86,8 +86,14 @@ const login = async (ctx: Context) => {
     returnBody(ctx, {}, errorPassword.msg, errorPassword.code)
     return
   }
-  const token = await createToken(user.toObject())
+  const token = await createToken(user._id)
   returnBody(ctx, { userInfo: user, token }, '登录成功')
+}
+
+// 获取用户信息
+const getUserInfo = async (ctx: Context) => {
+  const user = ctx.userData
+  returnBody(ctx, user)
 }
 
 // 更新昵称
@@ -109,6 +115,7 @@ const updateAvatar = async (ctx: Context) => {
 export {
   register,
   login,
+  getUserInfo,
   updateName,
   updateAvatar
 }

@@ -16,7 +16,7 @@ const UserModel = mongoose.model('user', new Schema({
   },
   avatar: {
     type: String,
-    default: ''
+    default: 'http://localhost:3001/upload/2022_2_8/avatar.jpeg'
   },
 }))
 
